@@ -5,7 +5,7 @@ const fibonacci = (n) => {
     return fibonacci(n-1) + fibonacci(n-2)
 }
 
-let range = 10;
+let range = 5;
 for(let i = 0; i<range; i++) {
     fibonacciArr.push(fibonacci(i))
 }
