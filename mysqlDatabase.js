@@ -8,7 +8,7 @@ const con = mysql.createConnection({
     database: "db"
 })
 
-//lets assume that you've created database and it's own table (users)
+//lets assume that you've created database and its own table (users)
 con.connect(err => {
     if(err) throw err;
     console.log('Connected to database');
