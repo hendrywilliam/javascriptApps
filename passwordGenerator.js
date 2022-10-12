@@ -9,3 +9,14 @@ const generatePassword = (range) => {
 }
 
 generatePassword(16);
+
+/* 
+5 Results:
+
+DxwOYigTrgyz(I^q
+jXZCzs%3h^H!XfnL
+b@LxjOqpG!ULa17c
+cx7IhJfq4(yzgT7&
+^R)z9CCPkdlHoT2Z
+
+*/
