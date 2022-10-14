@@ -1,27 +1,34 @@
 const input = document.getElementById("input");
 const search = document.getElementById("search");
-const noun = document.getElementById("noun");
-const verb = document.getElementById("verb");
-const adjective = document.getElementById("adjective");
+const list = document.getElementById("container");
+let audio;
 
-function fetchApi(word) {
-    let url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
-    fetch(url).then(response => response.json()).then(result => data(result, word)).catch((err)=> console.log(err));
+async function fetchApi(word) {
+    const api_url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    const response = await fetch(api_url);
+    const json_data = await response.json();
+    data(json_data, word);
 }
 
 function data(result, word) {
     if(result.title) {
         console.log(`We cant find the definition of ${word}`);
     } else {
-        const getNoun = result[0].meanings[0].definitions[0].definition;
-        const getVerb = result[0].meanings[1].definitions[0].definition;
-        const getAdjective = result[0].meanings[2].definitions[0].definition;
-        noun.innerText = getNoun;
-        verb.innerText = getVerb;
-        adjective.innerText = getAdjective;
-    }
-}
+        const {meanings} = result[0];
+        meanings.forEach((meaning) => { 
+            const {partOfSpeech, definitions} = meaning;
+            const partOfSpeech_heading = document.createElement("h3");
+            const definition_paragraph = document.createElement("p");
+            partOfSpeech_heading.innerText = partOfSpeech;
+            definition_paragraph.textContent = definitions[0].definition;
+            list.append(partOfSpeech_heading, definition_paragraph);
+            partOfSpeech_heading.classList.add("heading");
+            console.log(definitions[0].definition);
+        })
+    };
+};
 
 search.addEventListener("click", () => {
     fetchApi(input.value);
+    list.innerHTML =''
 })
