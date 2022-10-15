@@ -1,7 +1,7 @@
 const input = document.getElementById("input");
 const search = document.getElementById("search");
 const list = document.getElementById("container");
-let audio;
+let sound;
 
 async function fetchApi(word) {
     const api_url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
@@ -14,7 +14,20 @@ function data(result, word) {
     if(result.title) {
         console.log(`We cant find the definition of ${word}`);
     } else {
-        const {meanings} = result[0];
+        const {meanings, phonetics} = result[0];
+        phonetics.forEach((phonetic) => {
+            if(phonetic.audio) {
+                const soundButton = document.createElement("button");
+                soundButton.className = "voice_btn"
+                soundButton.textContent = "Voice";
+                list.append(soundButton);
+                soundButton.addEventListener('click', () => {
+                    sound = new Audio(phonetic.audio);
+                    sound.play();
+                })
+            }
+        })
+
         meanings.forEach((meaning) => { 
             const {partOfSpeech, definitions} = meaning;
             const partOfSpeech_heading = document.createElement("h3");

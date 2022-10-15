@@ -13,6 +13,10 @@ body {
     text-align: center;
 }
 
+.voice_btn {
+    margin-top: 10px;
+}
+
 .heading {
     font-size: 20px;
 }
