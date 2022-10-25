@@ -6,9 +6,7 @@ function chunkArrayInGroups(arr, size) {
         newArr.push(arr.slice(index, index+size))
         index += size;
     }
-
-    console.log(newArr)
-    // return newArr;
+    return newArr;
 }
 
 chunkArrayInGroups(["a", "b", "c", "d"], 2);
