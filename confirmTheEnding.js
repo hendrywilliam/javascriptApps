@@ -5,3 +5,11 @@ function confirmEnding(str, target) {
 }
 confirmEnding("Bastian", "n");
 confirmEnding("Congratulation", "on")
+
+// fancier solution
+
+function fancierConfirmEnding(str, target) {
+    return str.slice(str.length - target.length) === target
+}
+fancierConfirmEnding("Bastian", "n");
+fancierConfirmEnding("Congratulation", "on")
